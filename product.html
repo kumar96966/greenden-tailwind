@@ -53,13 +53,34 @@
 
     </nav>
 
-    <!--About Section-->
-    <section class="text-center">
-      <h1 class="text-3xl font-bold mt-5">About Us</h1>
-      <input type="text" class="border border-black p-2 m-3" style="width:80%">
-      <br>
+    <!--side bar-->
+    <section id="menuicon" class="bg-green-100 fixed z-20 top-0 translate-all duration-1000" style="width: 50%; height: 100vh; right: -50%;">
+      <div class="text-right p-5">
+        <p id="closenav" class="inline cursor-pointer">X</p>
+      </div>
 
-    <div class="grid grid-cols-2  md:grid-cols-4 mt-5 gap-5">
+      <ul class="flex  flex-col gap-10 items-center text-gray-600 ">
+
+                <li><a class="hover:underline hover:text-black" href="./index.html">Home</a></li>
+
+                <li><a class="hover:underline hover:text-black" href="./product.html">Product</a></li>
+
+                <li><a class="hover:underline hover:text-black" href="./contact.html">Contact</a></li>
+
+
+      </ul>
+   </section>
+
+
+
+
+
+
+    <!--Our product-->
+    <section class="text-center">
+      <h1 class="text-3xl font-bold mt-5">Our Product</h1>
+      <input id="search"  class="border border-black p-2 m-3" style="width:80%">
+      <div id="product-container" class="grid grid-cols-2  md:grid-cols-4 mt-5 gap-5">
         <div >
           <img src="./image/best-seller-1.jpg " class="inline hover:shadow-xl transform hover:-translate-y-2"  alt="">
           <h1>Rose plant</h1>
@@ -81,19 +102,19 @@
         
         <div >
           <img src="./image/best-seller-4.jpg " class="inline hover:shadow-xl transform hover:-translate-y-2"  alt="">
-          <h1>Rose plant</h1>
+          <h1>lilly plant</h1>
           <p>$20</p>
         </div>
 
         <div >
           <img src="./image/best-seller-1.jpg " class="inline hover:shadow-xl transform hover:-translate-y-2"  alt="">
-          <h1>Rose plant</h1>
+          <h1>color</h1>
           <p>$20</p>
         </div>
 
         <div >
           <img src="./image/best-seller-2.jpg " class="inline hover:shadow-xl transform hover:-translate-y-2"  alt="">
-          <h1>Rose plant</h1>
+          <h1>Plant</h1>
           <p>$20</p>
         </div>
 
@@ -128,3 +149,15 @@
       <h1 class="text-4xl font-bold">Greenden</h1>
       <P>The Standard Chunk of lorem ipsum used since the 1500s is reprosued below for those interest </P>
       <p>@ 2021 Greenday.com</p>
+
+  <script src="product.js"></script>
+
+
+
+
+
+
+
+
+
+

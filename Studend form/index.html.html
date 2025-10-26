@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details Task</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+        form div {
+            margin-bottom: 10px;
+        }
+        form label {
+            display: inline-block;
+            width: 80px;
+            font-weight: bold;
+        }
+        form input[type="text"],
+        form input[type="number"],
+        form input[type="email"],
+        form select {
+            width: calc(100% - 90px);
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Important for padding to work well */
+        }
+        form input[type="radio"] {
+            margin-left: 10px;
+        }
+        form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        form button:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>STUDENT FORM</h2>
+
+    <form id="studentForm">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+        </div>
+        <div>
+            <label for="age">Age</label>
+            <input type="number" id="age" required>
+        </div>
+        <div>
+            <label>Gender</label>
+            <input type="radio" id="male" name="gender" value="Male" checked> Male
+            <input type="radio" id="female" name="gender" value="Female"> Female
+        </div>
+        <div>
+            <label for="course">Course</label>
+            <select id="course">
+                <option value="JavaScript">JavaScript</option>
+                <option value="PYTHON">PYTHON</option>
+                <option value="HTML/CSS">HTML/CSS</option>
+                <option value="React">React</option>
+            </select>
+        </div>
+        <div>
+            <label for="email">E-mail</label>
+            <input type="email" id="email" required>
+        </div>
+        <button type="submit" id="saveBtn">Save</button>
+    </form>
+
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>NAME</th>
+                <th>AGE</th>
+                <th>COURSE</th>
+                <th>GENDER</th>
+                <th>EMAIL</th>
+                <th>ACTION</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr>
+                <td>Amal</td>
+                <td>22</td>
+                <td>PYTHON</td>
+                <td>Male</td>
+                <td>Amal@gmail.com</td>
+                <td><button class="delete-btn">Delete</button></td>
+            </tr>
+            </tbody>
+    </table>
+
+    <script>
+        // Wait for the DOM to be fully loaded before running the script
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Get references to the form, save button, and table body
+            const studentForm = document.getElementById('studentForm');
+            const tableBody = document.getElementById('tableBody');
+
+            // --- 1. ADD STUDENT ---
+            // Listen for the form's 'submit' event
+            studentForm.addEventListener('submit', (event) => {
+                // Prevent the form from submitting in the traditional way (reloading the page)
+                event.preventDefault();
+
+                // Get values from the form inputs
+                const name = document.getElementById('name').value;
+                const age = document.getElementById('age').value;
+                const gender = document.querySelector('input[name="gender"]:checked').value;
+                const course = document.getElementById('course').value;
+                const email = document.getElementById('email').value;
+
+                // Create a new table row element
+                const newRow = document.createElement('tr');
+
+                // Populate the new row with cells (td) using the form values
+                newRow.innerHTML = `
+                    <td>${name}</td>
+                    <td>${age}</td>
+                    <td>${course}</td>
+                    <td>${gender}</td>
+                    <td>${email}</td>
+                    <td><button class="delete-btn">Delete</button></td>
+                `;
+
+                // Append the new row to the table body
+                tableBody.appendChild(newRow);
+
+                // Clear the form fields after saving
+                studentForm.reset();
+            });
+
+            // --- 2. DELETE STUDENT ---
+            // Add a single click event listener to the entire table body.
+            // This is called "event delegation" and it's very efficient.
+            // It works even for new buttons added after the page loads.
+            tableBody.addEventListener('click', (event) => {
+                
+                // Check if the clicked element has the class 'delete-btn'
+                if (event.target.classList.contains('delete-btn')) {
+                    
+                    // Get the parent row (tr) of the button that was clicked
+                    const rowToDelete = event.target.closest('tr');
+                    
+                    // Remove that row from the table
+                    rowToDelete.remove();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+
